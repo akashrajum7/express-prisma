@@ -51,10 +51,10 @@ app.use(middleware());
 
 app.use(errorHandler());
 
-app.use((err: Error, req: Request, res: Response) => {
-  res.status(500).send({
-    error: "Internal Server Error",
-    message: err.message,
+app.use((error: any, req: Request, res: Response) => {
+  res.status(error?.statusCode || 500).json({
+    success: false,
+    error: error?.message || "Server Error",
   });
 });
 
