@@ -1,17 +1,12 @@
-import express, { Request, Response, Application, NextFunction } from "express";
-const cors = require("cors");
-const morgan = require("morgan");
-const helmet = require("helmet");
-let supertokens = require("supertokens-node");
-let Session = require("supertokens-node/recipe/session");
-let {
-  verifySession,
-} = require("supertokens-node/recipe/session/framework/express");
-let {
-  middleware,
-  errorHandler,
-} = require("supertokens-node/framework/express");
-let EmailPassword = require("supertokens-node/recipe/emailpassword");
+import express, { Request, Response, Application } from "express";
+import cors from "cors";
+import morgan from "morgan";
+import helmet from "helmet";
+import supertokens from "supertokens-node";
+import Session from "supertokens-node/recipe/session";
+import { verifySession } from "supertokens-node/recipe/session/framework/express";
+import { middleware, errorHandler } from "supertokens-node/framework/express";
+import EmailPassword from "supertokens-node/recipe/emailpassword";
 
 require("dotenv").config();
 
@@ -24,7 +19,7 @@ const websiteDomain =
 supertokens.init({
   framework: "express",
   supertokens: {
-    connectionURI: process.env.SUPERTOKENS_URL,
+    connectionURI: process.env.SUPERTOKENS_URL || "",
     apiKey: process.env.SUPERTOKENS_API_KEY,
   },
   appInfo: {
