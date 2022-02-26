@@ -3,32 +3,20 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import supertokens from "supertokens-node";
-import Session from "supertokens-node/recipe/session";
 import { verifySession } from "supertokens-node/recipe/session/framework/express";
 import { middleware, errorHandler } from "supertokens-node/framework/express";
-import EmailPassword from "supertokens-node/recipe/emailpassword";
+import { initialiseSupertokensAuth } from "./utils/auth";
 
 require("dotenv").config();
 
-const apiPort = process.env.PORT || 4000;
-const apiDomain = process.env.APP_API_URL || `http://localhost:${apiPort}`;
-const websitePort = process.env.WEBPORT || 3000;
-const websiteDomain =
+const websitePort: string | number = process.env.WEBPORT || 3000;
+const websiteDomain: string =
   process.env.APP_WEBSITE_URL || `http://localhost:${websitePort}`;
+const apiPort: string | number = process.env.PORT || 4000;
+const apiDomain: string =
+  process.env.APP_API_URL || `http://localhost:${apiPort}`;
 
-supertokens.init({
-  framework: "express",
-  supertokens: {
-    connectionURI: process.env.SUPERTOKENS_URL || "",
-    apiKey: process.env.SUPERTOKENS_API_KEY,
-  },
-  appInfo: {
-    appName: "Express Prisma",
-    apiDomain,
-    websiteDomain,
-  },
-  recipeList: [EmailPassword.init(), Session.init()],
-});
+initialiseSupertokensAuth(websiteDomain, apiDomain);
 
 const app: Application = express();
 
@@ -49,6 +37,8 @@ app.use(
 );
 app.use(middleware());
 
+// TODO: API Routes
+
 app.use(errorHandler());
 
 app.use((error: any, req: Request, res: Response) => {
@@ -58,7 +48,6 @@ app.use((error: any, req: Request, res: Response) => {
   });
 });
 
-const port: string | number = process.env.PORT || 4000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(apiPort, () => {
+  console.log(`Server is running on port ${apiPort}`);
 });
