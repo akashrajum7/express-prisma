@@ -20,6 +20,8 @@ initialiseSupertokensAuth(websiteDomain, apiDomain);
 
 const app: Application = express();
 
+app.use(express.json());
+
 app.use(
   cors({
     origin: websiteDomain, // TODO: Change to your app's website domain

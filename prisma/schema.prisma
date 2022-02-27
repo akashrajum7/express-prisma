@@ -15,7 +15,7 @@ datasource db {
 model User {
   bio        String?
   email      String    @unique
-  id         Int       @id @unique
+  id         String    @id @unique
   image      String?
   username   String    @unique
   articles   Article[] @relation("UserArticles")
@@ -35,7 +35,7 @@ model Article {
   updatedAt   DateTime  @default(now())
   tagList     String
   author      User      @relation("UserArticles", fields: [authorId], references: [id])
-  authorId    Int
+  authorId    String
   favoritedBy User[]    @relation("UserFavorites", references: [id])
   comments    Comment[]
 }
@@ -48,7 +48,7 @@ model Comment {
   article   Article  @relation(fields: [articleId], references: [id])
   articleId Int
   author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
+  authorId  String
 }
 
 model Tag {
