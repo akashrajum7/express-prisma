@@ -17,7 +17,7 @@ model User {
   email      String    @unique
   id         Int       @id @unique
   image      String?
-  username   String?   @unique
+  username   String    @unique
   articles   Article[] @relation("UserArticles")
   favorites  Article[] @relation("UserFavorites", references: [id])
   followedBy User[]    @relation("UserFollows", references: [id])
