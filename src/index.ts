@@ -1,4 +1,4 @@
-import express, { Request, Response, Application } from "express";
+import express, { Request, Response, Application, NextFunction } from "express";
 import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
@@ -45,7 +45,14 @@ app.use("/api", userRoutes);
 
 app.use(errorHandler());
 
-app.use((error: any, req: Request, res: Response) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.status(404).send({
+    success: false,
+    error: "Not found",
+  });
+});
+
+app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   res.status(error?.statusCode || 500).json({
     success: false,
     error: error?.message || "Server Error",
