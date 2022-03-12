@@ -6,6 +6,7 @@ import supertokens from "supertokens-node";
 import { verifySession } from "supertokens-node/recipe/session/framework/express";
 import { middleware, errorHandler } from "supertokens-node/framework/express";
 import { initialiseSupertokensAuth } from "./utils/auth";
+import userRoutes from "./routes/user";
 
 require("dotenv").config();
 
@@ -40,6 +41,7 @@ app.use(
 app.use(middleware());
 
 // TODO: API Routes
+app.use("/api", userRoutes);
 
 app.use(errorHandler());
 
