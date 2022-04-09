@@ -4,7 +4,7 @@ import { getCurrentUser, updateCurrentUser } from "../controllers/user";
 
 const router = Router();
 
-router.get("/user", verifySession(), getCurrentUser);
-router.put("/user", verifySession(), updateCurrentUser);
+router.get("/", verifySession(), getCurrentUser);
+router.put("/", verifySession(), updateCurrentUser);
 
 export default router;

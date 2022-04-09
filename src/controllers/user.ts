@@ -7,22 +7,16 @@ import { updateEmailOrPassword } from "supertokens-node/recipe/emailpassword";
 export const getCurrentUser = asyncHandler(
   async (req: SessionRequest, res: Response) => {
     const session = req.session;
-    if (!session) {
-      throw Error("Session not found");
-    }
-    const userId = session.getUserId();
-    if (!userId) {
-      throw Error("UserId not found");
-    }
+
+    const userId = session?.getUserId();
+
     const user = await prisma.user.findUnique({ where: { id: userId } });
-    if (!user) {
-      throw Error("User not found");
-    }
+
     res.status(200).send({
       user: {
-        email: user.email,
-        bio: user.bio,
-        image: user.image,
+        email: user?.email,
+        bio: user?.bio,
+        image: user?.image,
       },
     });
   }
@@ -31,17 +25,10 @@ export const getCurrentUser = asyncHandler(
 export const updateCurrentUser = asyncHandler(
   async (req: SessionRequest, res: Response) => {
     const session = req.session;
-    if (!session) {
-      throw Error("Session not found");
-    }
-    const userId = session.getUserId();
-    if (!userId) {
-      throw Error("UserId not found");
-    }
+
+    const userId = session?.getUserId();
+
     let user = await prisma.user.findUnique({ where: { id: userId } });
-    if (!user) {
-      throw Error("User not found");
-    }
 
     const { bio, image, email, password, username } = req.body;
 
@@ -57,7 +44,7 @@ export const updateCurrentUser = asyncHandler(
       password?: string;
       userContext?: any;
       userId: string;
-    } = { userId: userId };
+    } = { userId: userId as string };
 
     if (email) {
       userDataToUpdateInSupertokens.email = email;
