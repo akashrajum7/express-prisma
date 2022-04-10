@@ -79,5 +79,6 @@ export const initialiseSupertokensAuth = (
       }),
       Session.init(),
     ],
+    isInServerlessEnv: true,
   });
 };
