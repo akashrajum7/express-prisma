@@ -40,7 +40,7 @@ app.use(
 app.use(middleware());
 
 // TODO: API Routes
-app.use("/api", apiRoutes);
+app.use("/.netlify/functions/server/api", apiRoutes);
 
 app.use(errorHandler());
 
