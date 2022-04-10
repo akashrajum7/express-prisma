@@ -6,7 +6,6 @@ import supertokens from "supertokens-node";
 import { middleware, errorHandler } from "supertokens-node/framework/express";
 import { initialiseSupertokensAuth } from "./utils/auth";
 import apiRoutes from "./routes";
-import serverless from "serverless-http";
 
 require("dotenv").config();
 
@@ -58,4 +57,3 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 export default app;
-export const handler = serverless(app);
