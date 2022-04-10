@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "prisma generate && nodemon ./src/index.ts",
-    "start": "prisma generate && vercel dev",
-    "deploy": "prisma generate && vercel deploy --prod"
+    "dev": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' npx prisma generate && nodemon ./src/index.ts",
+    "start": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' npx prisma generate && vercel dev",
+    "deploy": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' npx prisma generate && vercel deploy --prod",
+    "migrate": "prisma migrate deploy"
   },
   "keywords": [],
   "author": "",
