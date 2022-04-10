@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.ts",
+    "dev": "nodemon ./src/local-server.ts",
     "build": "tsc",
-    "start": "tsc && node ./dist/index.js"
+    "start": "tsc && node ./dist/local-server.js"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,7 @@
     "express": "^4.17.3",
     "helmet": "^5.0.2",
     "morgan": "^1.10.0",
+    "serverless-http": "^3.0.1",
     "supertokens-node": "^9.0.0"
   }
 }
