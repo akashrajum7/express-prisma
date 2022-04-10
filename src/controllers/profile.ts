@@ -12,15 +12,15 @@ export const getProfileByUsername = asyncHandler(
     if (!user) {
       throw new ErrorResponse("No user found for the given username", 400);
     }
-    const { username, bio, image } = user;
+    const { username, bio, image, id } = user;
     let following = false;
     if (req.session) {
       const userFollowing = await prisma.user.findFirst({
         where: {
-          username: req.params.username,
-          followedBy: {
+          id: req.session.getUserId(),
+          following: {
             some: {
-              id: req.session.getUserId(),
+              id: id,
             },
           },
         },
