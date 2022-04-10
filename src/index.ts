@@ -3,10 +3,9 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import supertokens from "supertokens-node";
-import { verifySession } from "supertokens-node/recipe/session/framework/express";
 import { middleware, errorHandler } from "supertokens-node/framework/express";
 import { initialiseSupertokensAuth } from "./utils/auth";
-import apiROutes from "./routes";
+import apiRoutes from "./routes";
 
 require("dotenv").config();
 
@@ -41,7 +40,7 @@ app.use(
 app.use(middleware());
 
 // TODO: API Routes
-app.use("/api", apiROutes);
+app.use("/api", apiRoutes);
 
 app.use(errorHandler());
 
