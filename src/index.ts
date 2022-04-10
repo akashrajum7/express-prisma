@@ -47,15 +47,13 @@ app.use(errorHandler());
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).send({
-    success: false,
-    error: "Not found",
+    message: "Not found",
   });
 });
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   res.status(error?.statusCode || 500).json({
-    success: false,
-    error: error?.message || "Server Error",
+    message: error?.message || "Server Error",
   });
 });
 
