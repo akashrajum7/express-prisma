@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "prisma generate && nodemon ./src/local/index.ts",
     "build": "rm -rf functions && prisma generate && esbuild ./src/serverless/index.ts --bundle --platform=node --target=node16.14.2 --outfile=./functions/index.js",
-    "start": "prisma generate && node ./dist/local/index.js",
-    "postbuild": "mkdir -p ./functions/node/render/ && cp node_modules/@prisma/engines/*query* ./functions/node/render/; cp prisma/schema.prisma ./functions/node/render/"
+    "start": "prisma generate && node ./dist/local/index.js"
   },
   "keywords": [],
   "author": "",
@@ -20,12 +19,12 @@
     "esbuild": "^0.14.34",
     "netlify-lambda": "^2.0.15",
     "nodemon": "^2.0.15",
-    "prisma": "^3.12.0",
     "ts-node": "^10.7.0",
     "typescript": "^4.5.5"
   },
   "dependencies": {
     "@prisma/client": "^3.12.0",
+    "prisma": "^3.12.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "encoding": "^0.1.13",
