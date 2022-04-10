@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' npx prisma generate && nodemon ./src/index.ts",
-    "start": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' npx prisma generate && vercel dev",
-    "deploy": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' npx prisma generate && vercel deploy --prod",
+    "start": "npx prisma generate && vercel dev",
+    "deploy": "npx prisma generate && vercel deploy --prod",
     "migrate": "prisma migrate deploy"
   },
   "keywords": [],
@@ -17,14 +16,11 @@
     "@types/express": "^4.17.13",
     "@types/morgan": "^1.9.3",
     "@types/node": "^17.0.21",
-    "nodemon": "^2.0.15",
     "prisma": "^3.12.0",
-    "ts-node": "^10.7.0",
     "typescript": "^4.5.5"
   },
   "dependencies": {
     "@prisma/client": "^3.12.0",
-    "@vercel/node": "^1.14.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "encoding": "^0.1.13",
