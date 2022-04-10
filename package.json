@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "prisma generate && nodemon ./src/local/index.ts",
     "build": "rm -rf functions && prisma generate && esbuild ./src/serverless/index.ts --bundle --platform=node --target=node16.14.2 --outfile=./functions/index.js",
-    "start": "prisma generate && node ./dist/local/index.js"
+    "start": "prisma generate && node ./dist/local/index.js",
+    "postbuild": "mkdir -p ./functions/node/render/ && cp node_modules/@prisma/engines/*query* ./functions/node/render/; cp prisma/schema.prisma ./functions/node/render/"
   },
   "keywords": [],
   "author": "",
