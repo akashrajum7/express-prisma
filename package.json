@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "prisma generate && nodemon ./src/local/index.ts",
-    "build": "rm -rf functions && prisma generate && esbuild ./src/index.ts --bundle --platform=node --target=node14 --outfile=./api/index.js",
-    "start": "prisma generate && node ./dist/local/index.js"
+    "dev": "prisma generate && nodemon ./src/index.ts",
+    "start": "vercel dev",
+    "deploy": "vercel deploy --prod"
   },
   "keywords": [],
   "author": "",
@@ -16,14 +16,14 @@
     "@types/express": "^4.17.13",
     "@types/morgan": "^1.9.3",
     "@types/node": "^17.0.21",
-    "esbuild": "^0.14.34",
     "nodemon": "^2.0.15",
+    "prisma": "^3.12.0",
     "ts-node": "^10.7.0",
-    "typescript": "^4.5.5",
-    "prisma": "^3.12.0"
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "@prisma/client": "^3.12.0",
+    "@vercel/node": "^1.14.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "encoding": "^0.1.13",
